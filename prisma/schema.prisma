@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model BurritoType {
+  id       Int       @id @default(autoincrement())
+  name     String
+  burritos Burrito[]
+}
+
+enum BurritoSize {
+  SMALL
+  REGULAR
+  LARGE
+}
+
+model Burrito {
+  id         Int         @id @default(autoincrement())
+  size       BurritoSize
+  price      Float
+  typeId     Int
+  type       BurritoType @relation(fields: [typeId], references: [id])
+  orderItems OrderItem[]
+}
+
+model Order {
+  id         Int         @id @default(autoincrement())
+  totalCost  Float
+  created_at DateTime    @default(now())
+  orderItems OrderItem[]
+}
+
+model OrderItem {
+  id                      Int                      @id @default(autoincrement())
+  orderId                 Int
+  burritoId               Int
+  quantity                Int
+  burrito                 Burrito                  @relation(fields: [burritoId], references: [id])
+  order                   Order                    @relation(fields: [orderId], references: [id])
+  orderItemBurritoOptions OrderItemBurritoOption[]
+}
+
+model BurritoOption {
+  id                      Int                      @id @default(autoincrement())
+  name                    String
+  price                   Float
+  orderItemBurritoOptions OrderItemBurritoOption[]
+}
+
+model OrderItemBurritoOption {
+  orderItemId     Int
+  burritoOptionId Int
+  orderItem       OrderItem     @relation(fields: [orderItemId], references: [id])
+  burritoOption   BurritoOption @relation(fields: [burritoOptionId], references: [id])
+
+  @@id([orderItemId, burritoOptionId])
+}
