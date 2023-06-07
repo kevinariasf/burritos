@@ -38,3 +38,4 @@ lerna-debug.log*
 .env
 
 volumes
+src/__generated__
