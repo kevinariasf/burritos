@@ -46,10 +46,7 @@ describe('BurritoController (e2e)', () => {
             type: burritoTypeFactory,
           },
         });
-
-        for (let i = 0; i < burritosAmount; i++) {
-          await burritoFactory.create();
-        }
+        await burritoFactory.createList(burritosAmount);
       });
 
       it('Should return an array with the expected length', async () => {
