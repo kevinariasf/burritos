@@ -15,6 +15,7 @@ export class OrdersController {
   }
 
   @Get(':id')
+  @ApiOkResponse({ type: OrderEntity })
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.ordersService.findOne(id);
   }
