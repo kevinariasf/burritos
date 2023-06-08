@@ -23,6 +23,14 @@
 5.  `npm run start:dev`
 6.  Go to **http://localhost:3000/api**
 
+## How to use Swagger
+
+1.  Go to **http://kevin-burritos.us-east-2.elasticbeanstalk.com/api** or **http://localhost:3000/api** in local
+2.  Click on "Authorize", see the following image
+    ![](/docs/step-2.png)
+3.  Fill with the mandatory key **acme123**, see the following image
+    ![](/docs/step-3.png)
+
 ## How to run tests
 
 - Run `npm run test:e2e` after executing the steps of **how to run locally** section
