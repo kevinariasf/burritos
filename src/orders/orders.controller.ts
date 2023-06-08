@@ -1,10 +1,11 @@
 import { OrderEntity } from '@app/common';
 import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
-import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { OrdersService } from './orders.service';
 
 @Controller('orders')
 @ApiTags('orders')
+@ApiBearerAuth('Authorization')
 export class OrdersController {
   constructor(private readonly ordersService: OrdersService) {}
 

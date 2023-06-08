@@ -1,10 +1,11 @@
 import { BurritoEntity } from '@app/common';
 import { Controller, Get } from '@nestjs/common';
-import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { BurritosService } from './burritos.service';
 
 @Controller('burritos')
 @ApiTags('burritos')
+@ApiBearerAuth('Authorization')
 export class BurritosController {
   constructor(private readonly burritosService: BurritosService) {}
 
