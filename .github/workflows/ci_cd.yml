@@ -72,7 +72,7 @@ jobs:
       
       - name: Configure env file
         run: |
-          echo DATABASE_URL="$DEPLOYED_DATABASE_URL" > .env
+          echo DATABASE_URL="${{ secrets.DEPLOYED_DATABASE_URL }}" > .env
 
       - name: Run migrations
         run: npx prisma migrate dev
