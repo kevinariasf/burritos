@@ -51,7 +51,7 @@ jobs:
         run: npm run lint
 
       - name: Execute migrations
-        run: yarn db:migrate-test
+        run: npx prisma migrate dev
   
       - name: Execute test
         run: npm run test:e2e
