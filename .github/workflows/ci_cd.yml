@@ -80,7 +80,7 @@ jobs:
         run: npx prisma migrate dev
 
       - name: Compile code
-        run: rm -f *.env && npm run deploy
+        run: rm -f *.env && npm run build
 
       - name: Generate deployment package
         run: zip -r deploy.zip . -x '*.git*'
