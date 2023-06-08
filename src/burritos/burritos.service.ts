@@ -1,11 +1,11 @@
-import { PrismaService } from '@app/common';
+import { BurritosRepository } from '@app/common';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class BurritosService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private burritosRepository: BurritosRepository) {}
 
   findAll() {
-    return this.prisma.burrito.findMany({ include: { type: true } });
+    return this.burritosRepository.findAll();
   }
 }

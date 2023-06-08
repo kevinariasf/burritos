@@ -5,17 +5,16 @@ import { faker } from '@faker-js/faker';
 import { BurritosModule } from '../src/burritos/burritos.module';
 import { PrismaClient } from '@prisma/client';
 import { initialize } from '../node_modules/@quramy/prisma-fabbrica/lib/initialize';
-import {
-  defineBurritoFactory,
-  defineBurritoTypeFactory,
-} from '../src/__generated__/fabbrica';
-import { execSync } from 'child_process';
+import { burritoFactory, clearDatabase } from '@app/common';
 
 describe('BurritoController (e2e)', () => {
   let app: INestApplication;
 
   beforeEach(async () => {
-    execSync('npx prisma migrate reset --force');
+    await clearDatabase();
+  });
+
+  beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [BurritosModule],
     }).compile();
@@ -40,12 +39,6 @@ describe('BurritoController (e2e)', () => {
     describe('When burritos table is not empty', () => {
       const burritosAmount = faker.number.int({ min: 2, max: 5 });
       beforeEach(async () => {
-        const burritoTypeFactory = defineBurritoTypeFactory();
-        const burritoFactory = defineBurritoFactory({
-          defaultData: {
-            type: burritoTypeFactory,
-          },
-        });
         await burritoFactory.createList(burritosAmount);
       });
 

@@ -12,6 +12,7 @@ datasource db {
 
 generator fabbrica {
   provider = "prisma-fabbrica"
+  output   = "../libs/common/src/database/factories/__generated__/fabbrica"
 }
 
 model BurritoType {
@@ -38,7 +39,7 @@ model Burrito {
 model Order {
   id         Int         @id @default(autoincrement())
   totalCost  Float
-  created_at DateTime    @default(now())
+  createdAt  DateTime    @default(now())
   orderItems OrderItem[]
 }
 

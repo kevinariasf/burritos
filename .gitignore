@@ -38,4 +38,4 @@ lerna-debug.log*
 .env
 
 volumes
-src/__generated__
+libs/common/src/database/factories/__generated__
