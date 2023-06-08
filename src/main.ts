@@ -20,6 +20,10 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
   app.useGlobalGuards(new BasicGuard());
 
-  await app.listen(5000);
+  const port = process.env.PORT || 3000;
+
+  console.log(`Running on port: ${port}`);
+
+  await app.listen(port);
 }
 bootstrap();
